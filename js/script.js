@@ -50,13 +50,13 @@ const posts = [
 // elementi
 const postsList = document.querySelector('.posts-list');
 
-
 // reset
 postsList.innerHTML = '';
 
 
 // stampo tutti i post con innerHTML
 posts.forEach((post) => {
+    console.log(post)
     postsList.innerHTML += 
     `
     <div class="post">
@@ -90,10 +90,21 @@ posts.forEach((post) => {
         </div>            
     </div>
 
-
     ` 
+    
+});
 
+
+const btnLike = document.querySelectorAll('.js-likes-button');
+
+btnLike.forEach((index) => {
+    index.addEventListener('click', function (){
+        this.class
+    })
+    
 })
+
+
 
 
 
