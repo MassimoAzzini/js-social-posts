@@ -50,13 +50,14 @@ const posts = [
 // elementi
 const postsList = document.querySelector('.posts-list');
 
+
+
 // reset
 postsList.innerHTML = '';
 
 
 // stampo tutti i post con innerHTML
 posts.forEach((post) => {
-    console.log(post)
     postsList.innerHTML += 
     `
     <div class="post">
@@ -78,10 +79,10 @@ posts.forEach((post) => {
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button  js-like-button" href="#" data-postid="${post.index}">
+                    <span class="like-button  js-like-button" href="#" data-postid="${post.index}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
-                    </a>
+                    </span>
                 </div>
                 <div class="likes__counter">
                     Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
@@ -92,19 +93,18 @@ posts.forEach((post) => {
 
     ` 
     
-});
-
-
-const btnLike = document.querySelectorAll('.js-likes-button');
-
-btnLike.forEach((index) => {
-    index.addEventListener('click', function (){
-        this.class
-    })
-    
 })
 
 
+const btnLike = document.querySelectorAll('.like-button');
+console.log(btnLike)
+btnLike.forEach((btn) => {
+
+    btn.addEventListener('click', function(){
+        btn.classList.toggle('like-button--liked')
+        console.log('click')
+    })
+});    
 
 
 
