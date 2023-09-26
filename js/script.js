@@ -69,11 +69,11 @@ postsList.innerHTML = '';
 
 
 // stampo tutti i post richiamando la funzione che li crea singolarmente
-posts.forEach( post => postsList.innerHTML += createPost(post))
+posts.forEach( post => postsList.innerHTML += getPostTemplate(post))
 
 
 // funzione per creare il post
-function createPost(post){
+function getPostTemplate(post){
     const {id, content, media, author, likes, created} = post;
     return `
     <div class="post">
@@ -84,7 +84,7 @@ function createPost(post){
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${author.name}</div>
-                    <div class="post-meta__time">${dateFormat(created)}</div>
+                    <div class="post-meta__time">${changeDateFormat(created)}</div>
                 </div>                    
             </div>
         </div>
@@ -95,7 +95,7 @@ function createPost(post){
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <a class="like-button js-like-button ${isAlreadyLiked(id) ? 'like-button--liked' : ''}" href="#" data-postid="1">
+                    <a class="like-button js-like-button ${isPostLiked(id) ? 'like-button--liked' : ''}" href="#" data-postid="1">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </a>
@@ -112,13 +112,13 @@ function createPost(post){
 
 
 // funzione per dichiarare se un post è gia liked
-function isAlreadyLiked(id){
+function isPostLiked(id){
     return likesArray.includes(id);
 }
 
 
 // formattazione della data
-function dateFormat(dateStr){
+function changeDateFormat(dateStr){
     console.log(dateStr)
     return dateStr.split('-').reverse().join('/');
 };
