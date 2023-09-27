@@ -49,7 +49,7 @@ const posts = [
 
 // elementi
 const postsList = document.querySelector('.posts-list');
-
+let alreadyLike = []
 
 
 // reset
@@ -74,12 +74,12 @@ posts.forEach((post) => {
         </div>
         <div class="post__text">${post.content}</div>
         <div class="post__image">
-            <img src="${post.media}" alt="">
+            <img src="${post.media}" alt="${post.authorName}">
         </div>
         <div class="post__footer">
             <div class="likes js-likes">
                 <div class="likes__cta">
-                    <span class="like-button  js-like-button" href="#" data-postid="${post.index}">
+                    <span class="like-button  js-like-button" data-postid="${post.id}">
                         <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                         <span class="like-button__label">Mi Piace</span>
                     </span>
@@ -97,11 +97,29 @@ posts.forEach((post) => {
 
 
 const btnLike = document.querySelectorAll('.like-button');
-console.log(btnLike)
-btnLike.forEach((btn) => {
+const counterLikes = document.querySelectorAll('.js-likes-counter')
+
+
+console.log(counterLikes)
+btnLike.forEach((btn, index) => {
+
+    btn._id = posts[index].id;
+    btn._index = index;
+
 
     btn.addEventListener('click', function(){
         btn.classList.toggle('like-button--liked')
+
+        const postSelected = posts.find( post => post.id === this._id)
+
+        if(alreadyLike.includes(this._id)){
+            alreadyLike = alreadyLike.filter( likeId => likeId !== this._id)
+            postSelected.likes--;
+        } else {
+            postSelected.likes++;
+            alreadyLike
+        }
+
         console.log('click')
     })
 });    
