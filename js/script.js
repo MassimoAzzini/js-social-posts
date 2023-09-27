@@ -61,7 +61,7 @@ const posts = [
 
 // elementi
 const postsList = document.querySelector('.posts-list');
-let alreadyLike = []
+let likesArray = []
 
 
 
@@ -139,6 +139,7 @@ function authorImage(author){
 function authorInitials(author){
     const { name } = author;
 
+    //["Massimo","Azzini"]
     const letters = name.split(' ').map( nameSplit => nameSplit[0]);
     const initials = letters.join('');
     return `<div class="profile-pic-default">
@@ -159,7 +160,7 @@ likeButtons.forEach((btn, index) => {
 })
 
 
-
+/*
 const btnLike = document.querySelectorAll('.like-button');
 const counterLikes = document.querySelectorAll('.js-likes-counter')
 
@@ -176,23 +177,28 @@ btnLike.forEach((btn, index) => {
 
         const postSelected = posts.find( post => post.id === this._id)
 
-        if(alreadyLike.includes(this._id)){
-            alreadyLike = alreadyLike.filter( likeId => likeId !== this._id)
+        if(likesArray.includes(this._id)){
+            likesArray = likesArray.filter( likeId => likeId !== this._id)
             postSelected.likes--;
         } else {
             postSelected.likes++;
-            alreadyLike
+            likesArray
         }
 
         console.log('click')
     })
 });    
-
+*/
 function handleLikeBtn(event){
     event.preventDefault();
     this.classList.toggle('like-button--liked');
 
     const postSelected = posts.find( post => post.id === this._id);
+   // sono la stessa cosa
+    /*const postSelected = posts.find( function(post){
+        return post.id === this._id
+    });*/
+
 
 
     if(likesArray.includes(this._id)){
